@@ -1,54 +1,55 @@
 @extends('admin_layout')
 @section('admin_content')
-
-    <div class="row">
+<div class="row">
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Them danh muc san pham
+                            Thêm loại sản phẩm
                         </header>
-                        
                         <div class="panel-body">
-                              <?php 
+                            <?php
                                 $message = Session::get('message');
-                                if($message)
-                                {
-                                    echo '<span>'.$message.'</span>';
-                                    Session::put('message',null);
-                                }
-
+                                if($message)//neu ton tai thi moi in ra message
+                                    {
+                                        echo $message;
+                                        Session::put('message',null);
+                                    }
                             ?>
-
-
                             <div class="position-center">
                                 <form role="form" action="{{URL::to('/save-category-product')}}" method="post">
-                                    {{csrf_field()}}
+                                    <!-- tu dong tao token -->
+                                    {{ csrf_field() }}
+
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Ten danh muc</label>
-                                    <input type="text" name="ten_dm" class="form-control" id="exampleInputEmail1" placeholder="Ten danh muc">
+                                    <label for="exampleInputCategory">Tên loại</label>
+                                    <input type="text" class="form-control" name="category_product_name" class="form-control" id="exampleInputCategory" placeholder="Tên danh mục">
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Mo ta</label>
-                                    <textarea style="resize: none" rows="5" class="form-control" name="mota_dm" id="exampleInputPassword1" placeholder="Mo ta"></textarea>
+                                    <label for="exampleInputDesc_Category">Mô tả loại giày</label>
+                                    <!-- chinh cho textarea co dinh khong dc keo dan ra -->
+                                    <textarea style="resize: none" rows="6" class="form-control" name="category_product_desc" id="exampleInputDesc_Category" placeholder="Mô tả danh mục"></textarea>
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Trang thái</label>
-                                      <select name="trangthai_dm" class="form-control input-sm m-bot15">
-                                            <option value="0">an</option>
-                                            <option value="1">hien thi</option>
-                                            
-                            </select>
-                                <button type="submit" name="add_category_product" class="btn btn-info">Them danh muc</button>
+                                    <label for="exampleInputCategory">Ngày thêm</label>
+                                    <input type="date" class="form-control" name="category_product_date" class="form-control" id="exampleInputCategory" placeholder="Tên danh mục">
+                                </div>
+
+                                <div class="form-group">
+                                <label for="exampleInputView">Hiển thị</label>
+                                    <select name="category_product_status" class="form-control input-sm m-bot15">
+                                        <option value="1">Ẩn</option>
+                                        <option value="0">Hiện</option>
+                                    </select>
+                                </div>
+                                
+                                <button type="submit" name="add_category_product" class="btn btn-info">Thêm loại giày</button>
                             </form>
                             </div>
 
                         </div>
                     </section>
-
+                    
             </div>
-
 @endsection
-
-
-
-           

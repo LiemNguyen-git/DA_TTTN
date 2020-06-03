@@ -6,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
 <head>
-<title>TRANG ADMIN</title>
+<title>Trang Quan Ly Admin Website </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -30,17 +30,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="log-w3">
 <div class="w3layouts-main">
 	<h2>Đăng nhập</h2>
-		<form action="{{URL::to('/admin-tongquan')}}" method="post">
-			{{csrf_field()}}
-			<input type="email" class="ggg" name="admin_email" placeholder="Điền email" required="">
-			<input type="password" class="ggg" name="admin_pass" placeholder="Điền password" required="">
-			<span><input type="checkbox" />Nhớ đăng nhập</span>
-			<h6><a href="#">Quên mật khẩu</a></h6>
+		<?php
+			$message = Session::get('message');
+			if($message)//neu ton tai thi moi in ra message
+				{
+					echo $message;
+					Session::put('message',null);
+				}
+		?>
+		<form action="{{URL::to('/admin-dashboard')}}" method="post">
+			<!-- tao 1 token ngau nhien -->
+			{{ csrf_field() }}
+
+			<input type="text" class="ggg" name="admin_email" placeholder="Điền E-mail" required="">
+			<input type="password" class="ggg" name="admin_password" placeholder="Điền mật khẩu" required="">
+			<span><input type="checkbox" />Nhớ lần đăng nhập tiếp theo</span>
+			<h6><a href="#">Quên mật khẩu?</a></h6>
 				<div class="clearfix"></div>
-				<input type="submit" value="Sign In" name="login">
+				<input type="submit" value="Đăng nhập" name="login">
 		</form>
-		<p>Don't Have an Account ?<a href="registration.html">Create an account</a></p>
+
+	<!-- <p>Không có tài khoản ?<a href="registration.html">Tạo tài khoản mới</a></p> -->
 </div>
+
+
 </div>
 <script src="{{asset('public/backend/js/bootstrap.js')}}"></script>
 <script src="{{asset('public/backend/js/jquery.dcjqaccordion.2.7.js')}}"></script>
